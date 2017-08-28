@@ -71,3 +71,30 @@ the above will take every row from matrix X, and column index 1 and 2. (1:3 mean
 
 finally we will transform the data with our imputer, and replace the missing result with the mean of the respective column. 
 
+### Categorical Data
+In our dataset, there are 2 categorical data, Country and Purchased. Since machine learning is equation based, we need to encode our variable into numbers. We will use...
+
+    from sklearn.preprocessing import LabelEncoder
+
+we will transform the existing catogorial column into numbered column.
+
+    labelencoder_X = LabelEncoder()
+    X[:, 0] = labelencoder_X.fit_transform(X[:,0])
+
+However, just by turning column into number is not good enough. Since number express an relationship (1 > 0, 2 < 3, etc). Hence we will need dummy columns. dummy columns will separate each categories into multiple column, with bool to indicate if that row belongs to that category. to do this, we can leverage onehotencoder class from sklearn.
+
+    onehotencoder = OneHotEncoder(categorical_features=[0])
+    X = onehotencoder.fit_transform(X).toarray()
+    
+since purchased is a dependent variable, our machine learning equation will know that this is a categorical data. only label encoder will be needed. 
+
+### Splitting Dataset into Trainning Set and Test Set
+we need 2 set of data so we can test how effective our machine learning model is. we can use sklearn library to help us. 
+
+    from sklearn.cross_validation import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0)
+
+here we have train_test_split which will take our matrix, X and Y and create 2 set of data, with a test size of 20% and 80% train set base on the original data size. 
+
+### Feature Scaling 
+
