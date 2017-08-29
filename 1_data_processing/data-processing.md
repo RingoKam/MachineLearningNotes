@@ -97,4 +97,22 @@ we need 2 set of data so we can test how effective our machine learning model is
 here we have train_test_split which will take our matrix, X and Y and create 2 set of data, with a test size of 20% and 80% train set base on the original data size. 
 
 ### Feature Scaling 
+our independent variable are not within the same scale, this will cause issue on our machine learning model. If x is Age and y is Salary, then the euclidean distance will be dominated by the salary.
+
+there are 2 solutions
+* standardisation
+* normalization
+
+we need to **center** the data: make it zero mean and unit standard error. we will take each cell within the column, subtract the mean and divide by the standard deviantion. 
+
+    x′= x − μ / σ
+
+again we will use sklearn library to do this. 
+
+    from sklearn.preprocessing import StandardScaler
+    sc_X = StandardScaler()
+    X_train = sc_X.fit_transform(X_train)
+    X_test = sc_X.transform(X_test)
+
+fit transform is an combination of fit and transform the data. fit will loop thru your collection and calculate the internal state needed to do the transformation. Transform will actually use that state to do the calculation. 
 
