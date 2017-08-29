@@ -1,5 +1,5 @@
-# Objective
-## learn how to process data with python
+# Data Processing
+## Objective: learn how to process data with python
 
 ### Get the dataset
 with every dataset, we will identify **independent variable** to predict the outcome of **dependent** variable. 
